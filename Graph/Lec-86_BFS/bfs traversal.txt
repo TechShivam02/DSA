@@ -1,0 +1,38 @@
+ 
+   void bfs(int i, vector<int> adj[], vector<bool>& vis, vector<int>& v){
+       queue<int> q;
+       q.push(i);
+       vis[i] = true;
+       
+       while(!q.empty()){
+           int front = q.front();
+           q.pop();
+           v.push_back(front);
+           
+           for(int j=0; j<adj[front].size(); j++){
+               int element = adj[front][j];
+               if(!vis[element]){
+                   q.push(element);
+                   vis[element] = true;
+               }
+           }
+       }                    
+   }
+   
+
+// vector<int> v  ==>   Normal Vector	
+// vector<int> V[]    ==   is an array of vectors.   [ {..} , {..} , {..} , {..} ]    vector inside
+// vector< vector<int> > V   is a vector of vectors.    { {..} , {..} , {..} , {..}}
+
+
+
+   
+   vector<int> bfsOfGraph(int n, vector<int> adj[]) {
+       vector<bool> vis(n, false);
+       vector<int> v;
+       
+       bfs(0, adj, vis, v);
+         
+       return v;
+   }
+   
