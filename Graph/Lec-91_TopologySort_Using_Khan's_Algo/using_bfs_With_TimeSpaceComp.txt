@@ -1,0 +1,95 @@
+#include<unordered_map>
+#include<list>
+#include<vector>
+#include<queue>
+
+
+
+
+
+void  BfsTopologicalSort( int src , queue<int> &q , vector<int> &InDegree ,  unordered_map<int, list<int> > &adj  , vector<int> &ans){
+
+        
+    while(!q.empty()){
+        
+        int front = q.front();
+        q.pop();
+        
+        ans.push_back(front);
+        
+        for(auto neigh : adj[front]){
+            InDegree[neigh]--;
+            
+            if(InDegree[neigh] == 0){
+                q.push(neigh);
+            }
+            
+        }
+        
+        
+    }
+    
+    
+    
+}
+
+vector<int> topologicalSort(vector<vector<int>> &edges, int v, int e)  {
+
+    
+    unordered_map< int, list<int> > adj;
+     
+    
+    for(int i=0;i<e;i++){       
+        
+        int u = edges[i][0];
+        int v = edges[i][1];
+        
+        adj[u].push_back(v);
+        
+    }                                                          // space O(v)
+    
+       //    Indegree .. 
+    
+        vector<int> InDegree(v,0);
+
+        for(auto i : adj){
+
+            for(auto j : i.second){
+                InDegree[j]++;
+            }
+        }
+    
+    
+    
+    
+    //  0 indegree wale ko push krdo  In queue (: 
+    
+    queue<int> q;
+    
+    for(int i=0;i<v;i++){
+        if(InDegree[i] == 0 ){
+            q.push(i);
+        }    
+    }
+    
+    
+    
+    
+    
+        // call BFs ....
+    
+                vector<int> ans;
+    
+                BfsTopologicalSort( 0 , q , InDegree , adj  , ans );
+        
+    
+    
+        return ans;
+    
+    
+    
+    // Time Comp : O(V +E);
+    // Space Comp : O(V +E);
+    
+    
+}

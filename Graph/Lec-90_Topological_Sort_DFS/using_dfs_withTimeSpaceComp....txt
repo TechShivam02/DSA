@@ -1,0 +1,75 @@
+#include<unordered_map>
+#include<list>
+#include<stack>
+    
+
+void topLogSort(int src , vector<bool> &visited , stack<int> &stk ,  unordered_map< int, list<int> > &adj){
+    
+    visited[src] = true;
+    
+    for(auto ele : adj[src]){
+        
+        if(!visited[ele]){
+            topLogSort(ele , visited , stk , adj);
+        }
+        
+    }
+    
+    
+    
+   
+       stk.push(src);
+    
+}
+
+
+
+vector<int> topologicalSort(vector<vector<int>> &edges, int v, int e)  {
+    
+    //  create adjaceny list ... 
+        
+    unordered_map< int, list<int> >adj;
+    
+    for(int i=0;i<e;i++){
+        
+        int u = edges[i][0];
+        int v = edges[i][1];
+        
+        adj[u].push_back(v);
+    
+    }
+    
+    
+    // Call the dfs for all componenets 
+
+    
+//     unordered_map<int,bool> visited;  // time limit exteded
+    
+    vector<bool> visited(v,false);
+    
+    stack<int> stk;
+       
+    for(int src=0 ; src<v ; src++){
+        
+        if(!visited[src]){
+            topLogSort(src , visited , stk  , adj);
+        }
+    }
+    
+    
+    vector<int> ans;
+    
+    while(!stk.empty()){
+        ans.push_back(stk.top());
+        stk.pop();
+        
+    }
+    
+    return ans;
+    
+
+      //   Time  Comp : O(V+E);
+	//   Space  Comp : O(V);
+	
+     
+}
