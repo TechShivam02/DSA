@@ -1,0 +1,97 @@
+
+#include<bits/stdc++.h>
+
+
+bool  isCycleBfS(int src , unordered_map<int,bool> &visited ,  unordered_map< int, list<int> > &adj ){
+    
+        unordered_map<int,int> parent;
+    
+        parent[src] = -1;
+        visited[src] = true;
+    
+    queue<int> q;
+    
+    q.push(src);
+    
+    while(!q.empty()){
+        
+        int front = q.front();
+        q.pop();
+        
+        for(auto ele : adj[front]){
+            
+           
+            
+            parent[ele] = front;
+            
+            
+            if(visited[ele] == true  && parent[front] == ele ){  // neglect
+                continue;
+            }
+            
+             else if(visited[ele] == true){    // cycle detected
+                 return true;
+             } 
+            
+            else{
+                q.push(ele);
+                
+                visited[ele] = true;
+                parent[ele] = front;
+            }
+            
+        }
+        
+        
+       
+    
+    }
+    
+    
+        return false; 
+    
+}
+
+string cycleDetection (vector<vector<int>>& edges, int n, int m)
+{
+    //     create adjacency list  
+        
+    unordered_map< int, list<int> > adj;
+    
+    for(int i=0; i<m ; i++)
+    {
+        
+        int u = edges[i][0];
+        int v = edges[i][1];
+        
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+        
+    }   
+    
+    
+    unordered_map<int,bool> visited;
+    
+    
+    // To handle disConnected graph ... 
+    
+    for(int src=0;src<n;src++){
+        
+        if(!visited[src]){
+            
+            bool ans = isCycleBfS(src , visited , adj );
+            
+            if(ans == true){
+                 return "Yes";
+            }
+        }
+        
+    } // for loop ... 
+    
+    
+    return "No";
+    
+    
+    
+    
+}
