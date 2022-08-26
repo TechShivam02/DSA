@@ -1,0 +1,82 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+int static dp[1000][1001];   // Intializing dp[1000][1001];
+
+
+
+
+void LongestCommonSubString(string x , string y , int m , int n ){
+    
+    
+        
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                
+                  if(i==0 || j==0){     // Base Case = intialization
+                      
+                      dp[i][j]=0;
+                  }              
+                  
+                  else if( x[i-1] == y[j-1] ){
+                      dp[i][j]=1+dp[i-1][j-1];       
+                    
+                    // dp[i][j]=max(1+dp[i-1][j-1] , dp[i-1][j]);
+                      
+                      
+                  }
+                
+                else{
+                    dp[i][j] = 0;         
+                    
+                    
+                    
+                }
+                
+            
+            }
+        }
+        
+        
+        
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                cout<<dp[i][j]<<" ";
+            }
+            cout<<endl;
+            
+        }
+    
+}
+
+
+int main()
+{
+    
+    memset(dp , -1 , sizeof(dp));               // insider function , 1st - array , 2nd - to whom value with intialized  (Only 0 Or -1 ) , sizeof(array) )    
+    
+    // It will intialized the dp array (2d array ) , with -1 
+    
+    
+  
+  
+  string x="pqabcxy";
+                        
+                        
+  string y="xyzabcp";
+
+      
+      
+      
+   int m=x.length();
+   int n=y.length();
+   
+   
+   LongestCommonSubString(x, y , m , n);        // No need of passing dp // bcz intialized global , and value's are changing globaly 
+   
+    return 0;
+}
+
+

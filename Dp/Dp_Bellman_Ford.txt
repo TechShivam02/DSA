@@ -1,0 +1,240 @@
+#include <bits/stdc++.h>
+using  namespace std;
+
+
+// https://www.youtube.com/watch?v=FtN3BYH2Zes     // Abdul bari .... 
+
+
+
+struct path{
+     
+     int src;
+     int dest;
+     
+     int distance;
+     
+};
+
+
+
+struct node{
+    
+    int wt;
+    
+};
+
+
+
+
+
+
+vector< path >  graph;
+
+vector<node> weight;
+
+
+
+
+
+
+void solve(int ver , int edg){
+    
+    
+    for(int r=1 ; r<ver-1 ; r++){     // Relax = vertex -1 
+        
+        
+        cout<<endl;
+        
+        
+        
+        for(int i=0;i<edg;i++){
+                
+                if( weight [ graph[i].src ].wt + graph[i].distance < weight[graph[i].dest].wt ){
+                    
+                    weight[graph[i].dest].wt =  weight [ graph[i].src ].wt + graph[i].distance ;
+                    
+                    // cout<<graph[i].dest<<" : "<<weight[graph[i].dest].wt<<"   ";
+                }
+                
+        }
+        
+        
+        
+        for(int i=1;i <= ver ; i++){
+            cout<<i<<" -> "<<weight[i].wt<<"   ";
+        }
+        
+        
+        
+    }
+    
+    
+    
+}
+
+
+
+
+
+int main()
+{
+   
+   
+   int v =7 ;
+   int e=10;
+   
+   
+   
+    graph.resize(e);     // Don't Forgot to give e inside  , Not v 	
+    weight.resize(e);   // Don't Forgot to give  e inside  , Not v
+    
+    
+    
+        int s;
+        int d;
+        
+        int va;
+        
+        
+        
+    
+    
+    // Or by using for loop   , Line ->  147 - 163 
+    
+     graph[0].src = 1;
+      graph[0].dest = 2;
+      graph[0].distance = 6;
+    
+    
+     graph[1].src = 1;
+      graph[1].dest = 3;
+      graph[1].distance = 5;
+    
+    
+      graph[2].src =1;
+      graph[2].dest =4;
+      graph[2].distance = 5;
+    
+    
+    
+      graph[3].src = 3;
+      graph[3].dest = 2;
+      graph[3].distance = -2;
+    
+   
+      graph[4].src = 4;
+      graph[4].dest = 3;
+      graph[4].distance = -2;
+    
+    
+      graph[5].src = 2;
+      graph[5].dest = 5;
+      graph[5].distance = -1;
+    
+      graph[6].src = 3;
+      graph[6].dest = 5;
+      graph[6].distance = 1;
+    
+      graph[7].src = 4;
+      graph[7].dest = 6;
+      graph[7].distance = -1;
+      
+      graph[8].src = 5;
+      graph[8].dest = 7;
+      graph[8].distance = 3;
+      
+      graph[9].src = 6;
+      graph[9].dest = 7;
+      graph[9].distance = 3;
+      
+      
+      /*
+      
+      for(int i=0;i<e;i++){
+        
+       
+        
+        cin>>s>>d>>va;
+        
+        
+      graph[i].src = s;
+      graph[i].dest = d;
+      graph[i].distance = va;
+      
+        
+    }
+    
+    */
+    
+    
+    
+    
+    
+    
+    int source = 1;
+    
+    for(int i=1;i<=v;i++){
+        
+        if(i==source){
+            weight[ i ].wt = 0;
+        }
+        
+        else{
+            weight[i].wt = INT_MAX;
+            
+        }
+        
+    }
+    
+    
+    
+    for(int i=0;i<e;i++){
+        
+      
+        
+      cout<<graph[i].src <<" --> "<<graph[i].dest <<"   : "<<graph[i].distance<<endl;
+      
+        
+    }
+    
+    
+    cout<<endl;
+    
+    
+    
+    for(int i=1;i<=v;i++){
+        
+      
+        
+      cout<<i<<" , wt :   " << weight[i].wt<<endl;
+      
+      
+        
+    }
+    
+    
+    
+    
+    cout<<endl;
+    
+    
+    
+    
+    solve(v , e );
+    
+    
+    
+    
+    
+    
+    
+   
+   
+   
+    return 0;
+}
+
+
+
+
+

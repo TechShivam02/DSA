@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+int solve(int e , int f ){
+    
+    if(f==0 || f==1){                   // Base Case
+        return f;
+    }
+    
+    if(e==1){                      // Base Case
+        return f;     // Return f
+    }
+    
+    
+    int ans=INT_MAX;
+    
+    for(int k=1 ; k<=f ; k++){
+        
+        int attempt = 1+max(solve(e-1 , k-1) , solve(e,f-k));
+        
+        ans=min(ans,attempt);
+    }
+    
+    
+    
+    return ans;
+    
+    
+    
+}
+    
+
+
+int main()
+{
+    
+    
+    int eggs=3;
+    int flooors = 5;
+    
+    cout<<solve(eggs , flooors )<<endl;
+    
+    
+    return 0;
+}
+
+

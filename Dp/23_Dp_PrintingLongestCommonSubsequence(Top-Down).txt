@@ -1,0 +1,125 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+
+//  Video Is of Only 26:47  , Then video plays repaet 2 times Again ... (:
+
+
+
+int static dp[1000][1001];   // Intializing dp[1000][1001];
+
+
+
+
+void PrintLongestCommonSubSeq(string x , string y , int m , int n ){
+    
+    
+    
+        
+        for(int i=0;i<m+1;i++){
+            for(int j=0;j<n+1;j++){
+                
+                  if(i==0 || j==0){     // Base Case = intialization
+                      
+                      dp[i][j]=0;
+                  }              
+                  
+                  else if( x[i-1] == y[j-1] ){
+                      dp[i][j]=1+dp[i-1][j-1];             // 1+lcs(x,y,m-1,n-1)
+                      
+                  }
+                
+                else{
+                    dp[i][j] = max ( dp[i-1][j] , dp[i][j-1] );         // max ( lcs(x,y,m-1,n) ,lcs(x,y,m,n-1) };
+                    
+                    
+                }
+                
+            
+            }
+        }
+        
+        
+        
+            
+      
+      int i=m,j=n;
+      
+      
+      
+      
+      string ans="";
+      
+      
+      while(i>0 && j>0){
+      
+        if(x[i-1] == y[j-1]){
+            
+            ans.push_back(x[i-1]);
+            i--;
+            j--;
+            
+            
+        }
+        
+        else{
+            if(dp[i][j-1] > dp[i-1][j]){
+                j--;
+            }
+            
+            else{
+                i--;
+            }
+        }
+            
+          
+      }
+      
+      cout<<ans<<" "<<endl;
+      
+      
+      
+      reverse(ans.begin() , ans.end());
+      
+      cout<<"Final Ans : "<<ans<<" ";
+      
+        
+        // for(int i=0;i<m+1;i++){
+        //     for(int j=0;j<n+1;j++){
+        //         cout<<dp[i][j]<<" ";
+        //     }
+        //     cout<<endl;
+            
+        // }
+    
+}
+
+
+int main()
+{
+    
+    memset(dp , -1 , sizeof(dp));               // insider function , 1st - array , 2nd - to whom value with intialized  (Only 0 Or -1 ) , sizeof(array) )    
+    
+    // It will intialized the dp array (2d array ) , with -1 
+    
+    
+  
+  
+  string x="acbcf";
+                        //   x,y,n-1,m
+  string y="abcdaf";
+      
+      
+   int m=x.length();
+   int n=y.length();
+   
+   
+   PrintLongestCommonSubSeq(x, y , m , n);        // No need of passing dp // bcz intialized global , and value's are changing globaly 
+   
+    return 0;
+}
+
+
+

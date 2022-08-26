@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // Note : I have Find The Lcs , With Recursion , But For Further Do Find Lcs , with the help of Top-DownLCS
+   
+int LongestCommonSubSeq(string x , string y , int n , int m ){
+    
+    
+        if(n==0 || m==0){
+            return 0;
+        }
+        
+            
+            
+            if(x[n-1] == y[m-1]){
+                return  1+ LongestCommonSubSeq(x , y , n-1 ,  m-1 );
+            }
+    
+      
+            else {
+                
+                return max( LongestCommonSubSeq(x , y , n-1 ,  m ) ,  LongestCommonSubSeq(x , y , n ,  m-1 ) ) ;
+            }
+
+
+    return 0;
+    
+}
+
+
+int main()
+{
+   
+   
+   
+  string x="AGGTAB";
+                                
+  string y="GXTXAYB";
+   
+   
+   
+   
+ // Note : I have Find The Lcs , With Recursion , But For Further Do Find Lcs , with the help of Top-DownLCS
+   
+   int m=x.length();
+   int n=y.length();
+   
+   
+   int lcs=LongestCommonSubSeq(x, y , m , n);
+   
+   cout<<"Length Of ShorCmnSuperSeq ...  : "<< (m+n-lcs ) ;
+   
+  
+   
+   
+    return 0;
+}
+
+
+
+

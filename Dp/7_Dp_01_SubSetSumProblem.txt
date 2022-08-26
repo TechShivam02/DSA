@@ -1,0 +1,175 @@
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+/*
+bool Subset_sum(int arr[] , int n , int sum){           // using Recursion
+    
+    if(sum==0){
+        cout<<"1 Ans Found .. "<<endl;
+        
+        return true;
+    }
+    
+    if(sum<0 || n==0){
+        return false;
+    }
+    
+    // ans = { {2,8}  , {3,7}  , {10} }  ,, 3 subsets having sum =10 
+    
+    
+    bool inc=Subset_sum(arr+1,n-1,sum-arr[0]);
+    
+    bool notinc=Subset_sum(arr+1,n-1,sum);
+    
+    return inc||notinc;
+    
+    
+    
+}
+
+*/
+
+
+void Subset_sum(int array[] , int row , int col , int ** dp){
+    
+    
+    for(int i=0;i<row;i++){
+        
+        for(int j=0;j<col;j++){
+            
+            if( (i==0 && j==0)  || (j==0) ) {
+               
+                dp[i][j]=1;
+            }
+            
+            else if(i==0){
+                
+                dp[i][j]=0;
+            }
+            
+            else{
+                
+                if(j-array[i-1] <0 ){
+                    dp[i][j]=dp[i-1][j];
+                }
+                
+                else if(j-array[i-1] == 0 ){
+                    dp[i][j]=1;
+                }
+                
+                else{
+                    dp[i][j]=dp[i-1][j-array[i-1]];
+                }
+                
+                
+            }
+            
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            cout<<dp[i][j]<<" ";
+        }
+        cout<<endl;
+        
+    }
+}
+
+
+
+
+int main()
+{
+    
+    
+    /*     // Using Recursion 
+    
+    
+      int sum=10;
+    
+     int arr[]={2,3,7,8,10};
+    
+     int n=sizeof(arr)/sizeof(arr[0]);        
+    
+    
+    if(Subset_sum(arr,n ,sum)){
+        cout<<"True "<<endl;
+    }
+    else{
+    cout<<"False";
+    }
+
+
+*/
+
+   
+   
+   
+     int sum=5;
+    
+    
+     int array[]={2,3,5};
+    
+     int n=sizeof(array)/sizeof(array[0]);      
+    
+    
+    
+    
+    
+    int** dp = new int*[n+1];
+  
+    
+    for (int i = 0; i < n+1; i++){
+         
+         dp[i] = new int[sum+1];    // for every row set , sum+1  cols    or  2d array[n+1][Bcap+1];
+         
+    }
+    
+    
+    
+    
+    
+    
+    for(int i=0;i<sum+1;i++){
+        cout<<i<<" ";
+    }
+    
+    
+    cout<<endl<<endl;
+    
+    
+    
+    
+    
+    /*
+    
+    n+1 = rows , sum+1 = col  
+    
+      0 1 2 3 4 5
+    
+    0
+    2
+    3
+    5
+   
+   */
+   
+   
+    Subset_sum(array, n+1 , sum+1 , dp );  // 4 6 
+    
+    
+    
+
+    return 0;
+}
+

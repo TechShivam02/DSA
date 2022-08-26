@@ -1,0 +1,109 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+unordered_map<string,int> mp;
+
+
+int parenthesis_count(string s , int i , int j , bool isTrue)
+{
+    // Base Condition
+    if (i > j)
+        return 0;
+        
+    if (i == j) {
+        if (isTrue == true)
+            return s[i] == 'T';
+        else
+            return s[i] == 'F';
+    }
+    
+    
+    string temp=to_string(i);
+    temp.push_back(' ');
+    temp.append(to_string(j));
+    temp.push_back(' ');
+    
+    temp.append(to_string(isTrue));
+    
+    
+    // i_j_T/F   = Int Ans
+    
+    
+    
+     if(mp[temp] > 0 ){
+        return mp[temp];
+    }
+    
+    
+    
+    int ans = 0;
+    
+    for (int k = i+1 ; k <= j - 1; k = k + 2)
+    {
+        int leftF, leftT, rightT, rightF;
+        
+         leftT = parenthesis_count(s, i, k - 1, true);
+         leftF = parenthesis_count(s, i, k - 1, false);
+         rightT = parenthesis_count(s, k + 1, j, true);
+         rightF = parenthesis_count(s, k + 1, j, false);
+        
+        
+        if(s[k] == '&'){
+            if(isTrue == true){
+                ans+=leftT*rightT;
+            }
+            
+            else{
+                ans+=leftT*rightF + leftF*rightT + leftF*rightF;
+            }
+        }
+        
+        
+         if(s[k] == '|'){
+            if(isTrue == true){
+                ans+= leftT*rightF  + leftF*rightT  + leftT*rightT;
+            }
+            
+            else{
+                ans+=leftF*rightF ;
+            }
+        }
+        
+        
+        
+         if(s[k] == '^'){
+            if(isTrue == true){
+                ans+=leftT*rightF + leftF*rightT;
+            }
+            
+            else{
+                ans+=leftT*rightT + leftF*rightF;
+            }
+        }
+        
+        
+    }
+    
+    
+    mp[temp]=ans;
+    
+    
+    
+    return ans;
+}
+ 
+ 
+int main()
+{
+    // string str="T|T&F^T";
+    
+    string str="T&F|T^F";
+    
+    
+    
+    
+     cout << parenthesis_count(str, 0, str.length()-1, true);
+    return 0;
+}
+
+

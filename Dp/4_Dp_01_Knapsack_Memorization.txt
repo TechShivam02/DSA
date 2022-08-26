@@ -1,0 +1,95 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+int KnapSack( int wt[] ,int val[] , int Bcap , int n , int **array){
+    
+    
+    if(n==0 || Bcap==0){    // Base Case
+        return 0;
+    }
+    
+    if(array[n][Bcap] !=-1){           // using if already stored ans , then return it 
+        return array[n][Bcap];
+    }
+    
+    if(wt[0] <= Bcap){
+        
+        int conc = val[0] + KnapSack( wt+1 ,val+1 , Bcap - wt[0], n-1  , array);
+        int Notconc = KnapSack( wt+1 ,val+1 , Bcap , n-1 ,array);
+        
+        array[n][Bcap]= max(conc,Notconc);        // store the ans 
+        
+        return  array[n][Bcap];
+            
+    }
+    
+    else{
+        
+        array[n][Bcap]=KnapSack( wt+1 ,val+1 , Bcap , n-1 ,array);  // store the ans , then return 
+        
+        return array[n][Bcap];
+        
+    }
+    
+    return 0;
+}
+
+
+int main()
+{
+    
+     int n=3;
+    
+    int Bcap=50;    // Bag Capacity  ... 
+    
+    
+    int wt[n]={10,5,40};
+    int val[n]={500,200,10};
+    
+    
+    
+    
+    
+    
+    int** array = new int*[n+1];
+  
+    
+    for (int i = 0; i < n+1; i++){
+         
+         array[i] = new int[Bcap+1];    // for every row set , Bcap+1  cols    or  2d array[n+1][Bcap+1];
+         
+    }
+    
+    
+   for (int i = 0; i < n+1; i++){
+         
+         for(int j=0;j<Bcap+1;j++){
+             array[i][j]=-1;
+         }
+        
+    }
+    
+    
+    // for (int i = 0; i < n+1; i++){
+         
+    //      for(int j=0;j<Bcap+1;j++){
+    //          cout<<array[i][j];
+    //      }
+         
+    //      cout<<endl;
+         
+        
+    // }
+    
+    
+    
+    cout<<KnapSack(wt,val , Bcap ,n , array )<<endl;
+    
+    
+    return 0;
+}
+
+
+

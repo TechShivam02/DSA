@@ -1,0 +1,256 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+
+class graph{
+  
+  private:
+  
+    int n;
+    
+    int g[10][10];
+    
+    
+  public:
+  
+    graph(int k){              
+        
+        n=k;  
+        
+       
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                g[i][j] = 0;
+            }
+        }
+        
+    }
+   
+   
+    
+    void display_ad_mattrix(){
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                cout<<g[i][j]<<" ";
+            }
+            
+            cout<<endl;
+            
+        }
+    }
+    
+    
+    
+    void add_edge(int x , int y , int weight){
+        
+        
+        if((x<0) || (x>=n)){
+            cout<<"Vertex Not Exist's , For  ("<< x << "," <<y<<") " <<endl;
+        }
+        
+        
+        if((y<0) || (y>=n)){
+            cout<<"Vertex Not Exist's , For  ("<< x << "," <<y<<") " <<endl;
+        }
+        
+        else if(x==y){
+            cout << "Same Vertex! , For  ("<< x << "," <<y<<") " <<endl;
+        }
+        
+        else{
+            g[x][y]=weight;      
+            
+         }
+        
+    }
+    
+    
+    
+    
+    
+    void mainMattrix(){
+        
+        cout<<"Main Mattrix : "<<endl;
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+               
+               if(i==j){
+                   g[i][j]=0;
+               }
+               
+               else if(g[i][j] == 0 ) {
+                   g[i][j]=INT_MAX;
+               }
+               
+            }
+            
+            cout<<endl;
+            
+        }     // for loop  i 
+        
+        
+    }
+    
+    
+    
+    
+    void Solve(){
+        
+        
+        
+        for(int k=0;k<n;k++){
+            
+            cout<<k+1<<" Loop  : "<<endl<<endl;
+            
+            //     k
+            //  i     j      = min(ij , ik+kj );
+            
+            for(int i=0;i<n;i++){
+                for(int j=0;j<n;j++){
+                    
+                    if(i==j){
+                        g[i][j] =0;
+                    }
+                    
+                    else{
+                    
+                     int  sec=0;
+                    
+                        if(g[i][k] == INT_MAX){
+                            sec=INT_MAX;
+                        }
+                        else if(g[k][j] == INT_MAX){
+                            sec=INT_MAX;
+                        }
+                        else {
+                            sec=g[i][k] + g[k][j];
+                            
+                        }
+                    
+                    g[i][j] = min(g[i][j] , sec );
+                         
+                    }
+                    
+                   
+                    cout<<g[i][j]<<" ";
+                }
+                
+                cout<<endl;
+                
+            }
+            
+            
+            cout<<endl<<endl;
+            
+            
+        }
+        
+        
+        
+        
+        
+    }
+    
+    
+   
+    
+    
+};
+
+
+
+
+
+
+
+
+int main()
+{
+    
+
+  
+
+
+
+
+
+
+
+
+        int n=4;        
+        
+        
+        graph obj(n);
+        
+      
+      
+        
+    obj.add_edge(0, 3 ,  1);
+    obj.add_edge(0, 1  , 8 );
+    
+    
+    obj.add_edge(3, 1  , 3);
+    
+    obj.add_edge(3, 2  , 9);
+    obj.add_edge(1, 2  , 1);
+    
+    obj.add_edge(2, 0  , 4);
+    
+    
+    
+    
+        
+        
+    obj.display_ad_mattrix();
+    
+    
+    
+    obj.mainMattrix();
+    
+    obj.display_ad_mattrix();
+    
+    
+    
+    
+    
+    cout<<endl<<endl<<endl;
+    
+    
+    
+    
+    
+        
+        
+    obj.Solve();
+    
+    
+    
+    
+    
+     
+    /*
+     
+           1   2   3   4  
+        
+        1
+        
+        2
+        
+        3
+        
+        4
+    
+    
+    */
+    
+}
+
+
+
+
+
+

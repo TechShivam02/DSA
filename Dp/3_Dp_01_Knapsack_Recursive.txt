@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+int KnapSack( int wt[] ,int val[] , int Bcap , int n ){
+    
+    if(n==0 || Bcap==0){    // Base Case
+        return 0;
+    }
+    
+    if(wt[0] <= Bcap){
+        
+        int conc = val[0] + KnapSack( wt+1 ,val+1 , Bcap - wt[0], n-1 );
+        int Notconc = KnapSack( wt+1 ,val+1 , Bcap , n-1 );
+        
+        
+        return max(conc,Notconc) ;
+        
+            
+    }
+    
+    else{
+        return KnapSack( wt+1 ,val+1 , Bcap , n-1 );
+    }
+    
+    return 0;
+}
+
+
+int main()
+{
+    
+     int n=3;
+    
+    int Bcap=50;    // Bag Capacity  ... 
+    
+    
+    int wt[n]={10,5,40};
+    int val[n]={500,200,10};
+    
+    
+    
+    
+    
+    // Weight That picked Which gives Max Ans , AND  Wt picked <= Bag cap 
+    
+    // In our ans ,, 10 , 40 picked which gives max ans - 700  ,, also  wt = 50 
+    
+    /*
+     int wt[n]={10,20,20};
+    int val[n]={500,200,10};
+    
+    ans - 710  ,, bcz if all wt added wt=50 which is equaal to knapsack ,, also we get that max Profit 
+    
+    
+    int wt[n]={10,50,5};
+    int val[n]={500,100,100};
+    
+    ans - 600  ,, wt picked - 10,5  ans - 600  ,, bcz if 50 inclued then wt cap out of bound ,, and if only 50 picked then ans = 100 which is not max profit ,, so we will pick 10,5 wt and get the Max Profit 
+    
+    
+    
+    
+    */
+    
+    cout<<KnapSack(wt,val , Bcap ,n )<<endl;
+    
+    
+    // Ans = 100 + 200 selected   ,, then bag cap left = 5 kg  ,, 3rd have 30 kg so not selected ,, 4th have 40 kg so also not selected 
+    return 0;
+}
+
+
+

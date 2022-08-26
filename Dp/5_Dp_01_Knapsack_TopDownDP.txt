@@ -1,0 +1,103 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+void KnapSack( int wt[] ,int val[] , int row , int col , int **array){
+    
+    
+    for(int i=0;i<row;i++){
+        
+        for(int j=0;j<col;j++){
+            
+            if(i==0 || j==0){
+                array[i][j]=0;
+            }
+            
+            else{
+                
+                
+                int conc=-1;
+                
+                if( j - wt[i-1] >= 0){
+                    
+                    conc=val[i-1] + array[i-1][j - wt[i-1]];
+                }
+               
+               
+                
+                int notConc=array[i-1][j];
+                
+                
+                int ans = max(conc,notConc);
+                
+                array[i][j]=ans;
+                
+            }
+            
+            
+        }    // col for loop
+    
+        
+    }   // for row loop
+    
+    
+    
+    
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+           
+           cout<<array[i][j]<<" ";
+           
+        }
+        
+        cout<<endl;
+    }
+    
+    
+}
+
+
+int main()
+{
+    
+     int n=5;
+    
+    int Bcap=7;    // Bag Capacity  ... 
+    
+    
+    int wt[n]={ 2 , 5, 1 ,3 ,4 };
+    int val[n]={15,14,10,45,30};
+    
+    
+    
+    
+    
+    
+    int** array = new int*[n+1];
+  
+    
+    for (int i = 0; i < n+1; i++){
+         
+         array[i] = new int[Bcap+1];    // for every row set , Bcap+1  cols    or  2d array[n+1][Bcap+1];
+         
+    }
+    
+    
+    
+    
+    
+    
+    
+    KnapSack(wt,val , n+1 , Bcap+1 , array );
+    
+    
+    
+    
+    return 0;
+}
+
+
+
+
+

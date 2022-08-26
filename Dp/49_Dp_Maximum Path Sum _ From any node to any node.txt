@@ -1,0 +1,214 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+C#, VB, Perl, Swift, Prolog, Javascript, Pascal, HTML, CSS, JS
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+
+
+
+class Node{
+
+
+    public: 
+        
+        int data;
+        Node* left;
+        Node* right;
+        
+    Node(int val){
+        data=val;
+        left=NULL;
+        right=NULL;
+        
+    }
+        
+};
+
+
+ 
+  // Diamter : Here ->  Maximum path between the leaf Nodes  
+  
+  
+int solve(Node* root , int &res){
+    
+    if(!root){            // Base Case
+        return 0; 
+    }
+    
+    
+    
+    
+    int left=solve(root->left , res);             // Hypothesis
+    int right=solve(root->right , res);          // Hypothesis
+    
+    
+    
+    
+    int temp = max ( max(left ,right) + root->data  ,  root->data ) ;             // Induction
+    
+    int ans=max(temp , root->data+left+right);         // Induction
+    
+    
+    res=max(res , ans );                      // Induction
+    
+    return temp;
+    
+    
+    
+}
+
+
+
+
+int main()
+{
+  
+  
+  
+  Node* root = new Node(1);
+ 
+  root->left=new Node(2);
+  
+  root->right=new Node(3);
+  
+  
+  
+//       1
+  
+//      2      3 
+     
+//   4   5   6  7
+   
+//      8 9
+  
+  
+  
+  root->left->left=new Node(4);
+  
+  
+  
+  root->left->right=new Node(5);
+  
+  root->left->right->left=new Node(8);
+  root->left->right->right=new Node(9);
+  
+  
+  root->right->left=new Node(6);
+  root->right->right=new Node(7);
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+//   Node* root = new Node(1);
+ 
+//   root->left=new Node(2);
+  
+//   root->right=new Node(3);
+  
+  
+  
+  
+//   root->left->left=new Node(4);
+  
+  
+// //       1
+  
+// //     2      3 
+     
+// //   4   5   6  7
+   
+// //      -8 -8
+  
+  
+  
+//   root->left->right=new Node(5);
+  
+//   root->left->right->left=new Node(-8);
+//   root->left->right->right=new Node(-9);
+  
+  
+//   root->right->left=new Node(6);
+//   root->right->right=new Node(7);
+  
+  
+  
+  
+  
+  
+  
+  
+  
+//   Node* root = new Node(1);
+ 
+//   root->left=new Node(2);
+  
+//   root->right=new Node(3);
+  
+  
+  
+// //          1
+  
+// //      2      3 
+     
+// //   4   5   6  7
+   
+// //    20 20
+  
+//   root->left->left=new Node(4);
+  
+  
+  
+//   root->left->right=new Node(5);
+  
+//   root->left->right->left=new Node(20);
+//   root->left->right->right=new Node(20);
+  
+  
+//   root->right->left=new Node(6);
+//   root->right->right=new Node(7);
+  
+  
+  
+  
+  
+  
+  
+  int res=INT_MIN;
+  
+  solve(root , res);
+  
+  cout<<res<<endl;
+  
+  
+  
+  
+    
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+

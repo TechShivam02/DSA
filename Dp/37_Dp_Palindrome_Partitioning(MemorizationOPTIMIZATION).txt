@@ -1,0 +1,131 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+int static dp[1000][1001];   // Intializing dp[1000][1001];
+
+
+// int left=0;
+// int right=0;
+
+
+
+
+
+    
+    bool isPalindrome(string String, int i, int j)
+    {
+        while(i < j)
+        {
+          if(String[i] != String[j])
+            return false; 
+          i++;
+          j--;
+        }
+        return true;
+    }
+    
+    
+    
+int PalindromePartitions(string s, int i, int j)
+    
+    {
+        if (i >= j){
+            return 0;
+        }
+        
+        if( isPalindrome(s,i,j) ){
+            return 0;
+        }
+        
+        
+        
+    
+    
+          if(dp[i][j] !=-1) {
+                return dp[i][j];
+            }
+                 
+        
+          
+          int ans = INT_MAX;
+          
+            
+        
+        
+        
+    for (int k = i; k < j; k++){
+            
+                int left,right;
+          
+        if(dp[i][k] != -1){
+            left=dp[i][k];
+        }
+        
+        else{
+            left=PalindromePartitions(s, i, k);
+            dp[i][k]=left;
+        }
+        
+        
+        
+        
+        
+        if(dp[k+1][j] != -1){
+            right=dp[k+1][j];
+        }
+        
+        else{
+            right=PalindromePartitions(s, k + 1, j);
+            dp[k+1][j]=right;
+        }
+        
+        
+        
+        int temp = left + right +  1 ;
+            
+        ans=min(ans,temp);
+          
+        }
+        
+            
+            dp[i][j]=ans;
+        
+     
+     
+        return ans;
+    }
+
+
+
+             
+             
+
+int main()
+{
+    
+    memset(dp , -1 , sizeof(dp));               // insider function , 1st - array , 2nd - to whome value with intialized  (Only 0 Or -1 ) , sizeof(array) )    
+    // It will intialized the dp array (2d array ) , with -1 
+    
+    
+    
+    
+    
+    
+      
+      
+    string str = "nitik";        //     n | iti | k       2  Cuts ...
+    
+    
+   
+    cout << "Min cuts needed for Palindrome Partitioning is  : " <<   PalindromePartitions(str, 0, str.length() - 1) << endl;
+    
+   
+    return 0;
+}
+
+
+
+
+

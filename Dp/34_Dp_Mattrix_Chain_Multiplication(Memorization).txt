@@ -1,0 +1,83 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+int static dp[1000][1001];   // Intializing dp[1000][1001];
+
+
+
+
+
+
+
+int MatrixChainOrder(int arr[], int i, int j)
+{
+    if (i >= j){
+        return 0;
+    }
+    
+    
+    
+    
+             if(dp[i][j] !=-1){
+                 return dp[i][j];
+                
+             }
+    
+    
+    
+    
+    int min = INT_MAX;
+    
+    
+    
+    for (int k = i; k <= j-1; k++)
+    {
+        int temp = MatrixChainOrder(arr, i, k) + MatrixChainOrder(arr, k + 1, j) + (arr[i - 1] * arr[k] * arr[j] ) ;
+ 
+ 
+        
+        if (temp < min){
+            min = temp;
+        }
+        
+         
+    }
+ 
+                dp[i][j]=min;
+            
+ 
+ 
+ 
+    return min;
+}
+
+
+
+
+int main()
+{
+    
+    memset(dp , -1 , sizeof(dp));               // insider function , 1st - array , 2nd - to whome value with intialized  (Only 0 Or -1 ) , sizeof(array) )    
+    
+    // It will intialized the dp array (2d array ) , with -1 
+    
+    
+    
+    
+    
+    
+   
+   
+    int arr[] = {40,20,30,10,30 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+ 
+    cout << "Minimum number of multiplications is : "<< MatrixChainOrder(arr, 1, n - 1);
+
+   
+    return 0;
+}
+
+
+

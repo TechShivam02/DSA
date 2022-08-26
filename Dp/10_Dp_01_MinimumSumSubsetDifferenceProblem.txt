@@ -1,0 +1,184 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+
+void Subset_sum(int array[] , int row , int col , int ** dp){
+    
+    
+    
+    // Range = col -1 ;
+    
+    for(int i=0;i<row;i++){
+        
+        for(int j=0;j<col;j++){
+            
+            if( (i==0 && j==0)  || (j==0) ) {
+               
+                dp[i][j]=1;
+            }
+            
+            else if(i==0){
+                
+                dp[i][j]=0;
+            }
+            
+            else{
+                
+                if(j-array[i-1] <0 ){
+                    dp[i][j]=dp[i-1][j];
+                }
+                
+                else if(j-array[i-1] == 0 ){
+                    dp[i][j]=1;
+                }
+                
+                else{
+                    dp[i][j]=dp[i-1][j-array[i-1]];
+                }
+                
+                
+            }
+            
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            cout<<dp[i][j]<<" ";
+        }
+        cout<<endl;
+        
+    }
+    
+    
+    
+    cout<<endl;
+    
+    // Range = col -1 ;
+    
+    
+    vector<int> v;
+    
+    int range=(col-1)/2;
+    
+    for(int j=1;j<=range;j++){
+        if(dp[row-1][j] == true ){
+            v.push_back(j);
+        }
+    }
+    
+    
+    
+    int size=v.size();
+    
+    
+    int ans=INT_MAX;
+    
+    for(int i=0;i<size;i++){
+        
+        cout<<v[i] << " : " << (col-1) - 2*v[i];          // Range - 2S1 ==>  Range - 2 *v[i]  ==-> (col-1) - 2*v[i]
+    
+        int curr = (col-1) - 2*v[i];
+        
+        if(curr < ans){
+            ans=curr;
+        }
+        
+        cout<<endl;
+        
+    }
+    cout<<endl;
+    
+    
+    cout<<"Min Subset Sum Diff : " <<ans<<" "<<endl;
+    
+    
+    // cout<<(col-1) - (2*v[size-1])<<" ";  // Instead of solving the ans from vector , just return  (range - 2 * v[size-1] )
+    // from line 83 - 100 
+    
+    
+    
+    
+}
+
+
+
+
+int main()
+{
+    
+    
+    
+    
+     int array[]={1,2,7};
+    
+     int n=sizeof(array)/sizeof(array[0]);   
+     
+     int range=0;
+     for(int i=0;i<n;i++){
+         range+=array[i];
+     }
+    
+    
+    
+    
+    
+    
+    
+    int** dp = new int*[n+1];
+  
+    
+    for (int i = 0; i < n+1; i++){
+         
+         dp[i] = new int[range+1];    
+         
+    }
+    
+    
+    
+    
+    
+    
+    for(int i=0;i<range+1;i++){
+        cout<<i<<" ";
+    }
+    
+    
+    cout<<endl<<endl;
+    
+    
+    
+    
+    
+    /*
+    
+    n+1 = rows , range+1 = col  
+    
+      0 1 2 3 4 5 6 7 8 9 10
+    
+    0
+    1
+    2
+    7
+   
+   */
+   
+   
+    Subset_sum(array, n+1 , range+1 , dp );  // 4 11   // total 3 ele ,, range = 10  ( range =  sum of all ele )
+    
+    
+    
+
+    return 0;
+}
+
+
+
