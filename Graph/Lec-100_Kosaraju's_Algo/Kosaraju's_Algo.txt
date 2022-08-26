@@ -1,0 +1,146 @@
+#include<vector>
+#include<stack>
+#include<list>
+#include<unordered_map>
+
+
+
+
+void dfs( int node , unordered_map<int , list<int> > &adj ,  unordered_map<int,bool> &visited , stack<int> &st){
+    
+    visited[node] = true;
+    
+    
+    for(auto neigh : adj[node]){
+        if(!visited[neigh]){
+            dfs(neigh , adj , visited , st);    
+        }
+    }
+    
+    st.push(node);
+    
+}
+
+
+void   CountSCCs(int node ,  unordered_map<int,bool> &visited , unordered_map<int , list<int> > &transpose){
+    
+    
+    if(visited[node] == true){
+        return;
+    }
+    
+   
+    visited[node] = true;
+    
+    for(auto neigh : transpose[node]){
+        
+            if(!visited[neigh])
+            {
+                
+                CountSCCs(neigh , visited , transpose);
+            }
+            
+    }
+    
+    
+    
+    
+}
+int stronglyConnectedComponents(int v, vector<vector<int>> &edges)
+{
+    // create a adjaceny list
+    
+    unordered_map<int , list<int> > adj;
+    
+    for(int i=0;i<edges.size() ; i++){  
+       
+            int u = edges[i][0];
+            int v = edges[i][1];
+        
+        adj[u].push_back(v);   // Directed comp ... 
+        
+    }
+    
+    
+    
+    // Step 1 : TopLogical sort    // Storing in  a stack
+    // Step 2 :   Transpose the graph   if u-->v    change it to v-->u;
+    // Step 3 : The stack from TopLog Sort  , Do the Operation  (Print || Counnt)
+    
+    
+    
+    // Step 1 : 
+    
+    stack<int> st;
+    unordered_map<int,bool> visited;
+    
+    for(int i=0;i<v;i++){    
+        if(!visited[i]){
+            dfs( i , adj , visited , st);
+        }
+    }
+    
+    //   By using TopLog Srt  ,  Stack Created
+    
+    
+    
+    
+    
+    
+    
+    // Step 2 :   Transpose of the graph ...
+    
+    unordered_map<int , list<int> > transpose;
+    
+   for(int i=0;i<edges.size() ; i++){
+       
+            int u = edges[i][0];
+            int v = edges[i][1];
+        
+        transpose[v].push_back(u);    // Transpose Done (:
+        
+    }
+    
+    
+    for(int i=0;i<v;i++)
+    {
+        visited[i] = false;
+    }
+    
+    
+    
+    
+    
+    
+    // Step 3 :   The stack from TopLog Sort  , Do the Operation  (Print || Count)
+    
+    int count = 0 ;  // Ans to be return 
+    while(!st.empty()){
+        
+        int node = st.top();
+        st.pop();
+        
+        
+        if(!visited[node]){
+            count++;  
+            CountSCCs(node , visited , transpose );
+        }
+        
+    }
+     
+    
+    
+    // TimeComp : O( V + E ) ; 
+    
+    
+    
+    return count;
+    
+    
+    
+    
+    
+    
+    
+    
+}

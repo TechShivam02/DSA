@@ -1,0 +1,185 @@
+	#include <vector>
+#include <unordered_map>
+#include <list>
+#include <iostream>
+
+
+using namespace std;
+
+
+
+// Using   Tarjan’s Algorithm
+
+
+
+
+void  dfs(int node , int parent ,    vector<int> &disc , vector<int> &low  , unordered_map<int , bool > &visited ,  unordered_map< int, list<int> > &adj ,  vector<int> &Apoint , int &timer  , int &childCount){
+    
+    
+    visited[node] = true;
+    
+    
+    disc[node] = timer;
+    low[node] = timer;
+    
+    timer++;
+    
+    
+    
+    
+    for(auto neigh : adj[node]){
+        
+        // node = 0   neigh = 3 
+        
+        if(neigh == parent){   // node 4     neigh = 3   parent of node(4) = 3 
+            continue;
+        }
+        
+        
+        if(visited[neigh] == true){     //  backEdge     
+            
+            low[node] = min(low[node] , disc[neigh]);
+            
+        }
+        
+        else{  // call dfs ... 
+        
+            childCount++;
+        
+            dfs( neigh , node , disc , low , visited , adj , Apoint , timer , childCount);
+            
+                // after return update low 
+                
+                low[node] = min(low[node] , low[neigh]);
+                
+                
+                // check Apoint hai ya nhi .. 
+                if(low[neigh] >= disc[node]  && parent != -1){
+                     Apoint[node] = 1;           // if true   it means that current node is Apoint Node
+                }
+                
+                
+            
+        }
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+}
+        
+int main()
+{
+    
+    int n=5;
+    
+    
+    
+    vector< pair<int,int> > edges;
+    
+    edges.push_back(make_pair(0,1));
+    edges.push_back(make_pair(0,4));
+    edges.push_back(make_pair(0,3));
+    
+    edges.push_back(make_pair(1,2));
+    
+    edges.push_back(make_pair(3,4));
+    
+
+
+
+    unordered_map< int, list<int> > adj;
+    
+    for(int i=0;i<edges.size() ; i++){
+        
+        int u = edges[i].first;
+        int v = edges[i].second;
+        
+        
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+        
+    }
+
+
+
+
+
+    int timer = 0;
+    
+    vector<int> disc(n);
+    vector<int> low(n);
+    
+    
+    unordered_map<int , bool > visited;
+    vector<int> Apoint(n,0);
+    
+    
+    
+    
+    for(int i=0;i<n;i++)
+    {
+        disc[i] = -1;
+        low[i] = -1;
+    }
+    
+    
+    
+    
+    int childCount = 0;
+    
+    
+    // dfs  
+    
+    for(int i=0;i<n;i++){
+        
+        if(!visited[i]){
+           
+             dfs(i , -1 , disc , low  , visited , adj , Apoint , timer , childCount );
+             
+             // node  parent   disc  low   vis    adj    Apoint      timer 
+        }  
+    }
+    
+    
+    
+    
+    
+    if(childCount > 1){
+        Apoint[0] = 1;
+    }
+    
+    
+    
+    
+    // print the ans   , in articulationPoints Array    our ans stored 
+    
+    
+    for(int i=0;i<n;i++){
+        if(Apoint[i] !=0){
+            cout<<i<<" ";
+        }
+    }
+    
+    
+    cout<<endl;
+    
+    
+
+// Time Comp  :   O(V+E) ;     
+// Space Comp  :   O(V+E) ;     
+
+
+
+
+    return 0;
+}
