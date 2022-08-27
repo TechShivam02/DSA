@@ -1,0 +1,114 @@
+#include<algorithm>
+
+
+bool comp(vector<int> &a , vector<int> &b){
+    return a[2] < b[2];
+    
+}
+
+
+void makeSet(vector<int> &parent ,vector<int> &rank , int n){
+
+        for(int i=0;i<n;i++){
+            parent[i] = i;
+            rank[i] = 0;
+        }
+    
+}
+
+int findParent(vector<int> &parent  , int node){
+    if(parent[node] == node){
+        return node;
+    }
+    
+      int ans = findParent(parent , parent[node]);   // find krega parent  upto root   
+    
+      parent[node] = ans;   // path compression 
+    
+    return ans;   // return krdo  jo ans hai , i.e   parent ans aya vo   asked node ka
+}
+
+
+void unionSet(int u , int v , vector<int> &parent , vector<int> &rank){
+    
+        int p1 = findParent(parent , u);
+        int p2 = findParent(parent , v); 
+    
+    if(rank[p1] == rank[p2]){
+        parent[p2] = p1;             // parent of any set to another 
+        rank[p1]++;                //  who is the parent   rank value inc  (++)
+    }
+    
+    else if(rank[p1] < rank[p2]){   // jiska rank kmm hai  uska parent = dosra set krdo ,  testcase-6   1<2  
+        parent[p1] = p2;
+    }
+    
+    else{
+         parent[p2] = p1;
+    }
+    
+    
+}
+
+
+
+int minimumSpanningTree(vector<vector<int>>& edges, int n)
+{
+    
+    // return  total wieght to the spaaning Tree .. 
+    
+    
+    
+    //  Step1 : sort the edges wala vector      u,v,wt    
+    
+    sort(edges.begin() , edges.end() , comp);  // we will be sorting the vector on the basis on wt  , 3rd ele
+    
+    
+    
+    
+    vector<int> parent(n);
+    vector<int> rank(n);
+    
+    
+    makeSet(parent , rank , n);
+    
+    
+    
+    // step 2: iterate over the edges wali list     // which have been sorted 
+    
+    
+        int ans = 0;  // jo return krna hai ... 
+    
+            
+    for(int i=0;i<edges.size();i++){
+         
+        int u = edges[i][0];
+        int v = edges[i][1];
+        
+        int wt = edges[i][2];
+        
+        int p1 = findParent(parent , u);      // parent of  u
+        int p2 = findParent(parent , v);      // parent of v
+        
+        if(p1 != p2){   // if  parent of u  !=   to parent of v      --->   Merze || Union 
+            
+            ans+=wt;                                  // ans +=  weight; 
+            unionSet(u , v , parent , rank);
+        
+        }
+        
+    }
+    
+    return ans;
+    
+        
+    
+    // Time Comp : O( V * Log(V) );
+    // Space Comp : O(V);
+    
+    
+    
+    
+    
+    
+}

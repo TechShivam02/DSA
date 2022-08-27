@@ -1,0 +1,110 @@
+#include<list>
+#include<set>
+#include<unordered_map>
+
+
+vector<int> dijkstra(vector<vector<int>> &vec, int vertices, int edges, int source) {
+       
+          // Step 1 : create adj list 
+    
+    // create adjancecy list
+    
+    unordered_map< int  , list< pair<int,int> > > adj;
+    
+    for(int i=0;i<edges;i++){    // edges 
+    
+            int u  = vec[i][0];
+            int v  = vec[i][1];
+            int wt = vec[i][2];
+        
+            
+        adj[u].push_back(make_pair(v,wt));
+        adj[v].push_back(make_pair(u,wt));   // undirected 
+        
+    }
+    
+    
+    
+    // create a dist array  , intilizae all eith inf  except the src node  , i.e with 0 
+    vector<int> dist(vertices);
+    
+    for(int i=0;i<vertices;i++){
+        dist[i] = INT_MAX;
+    }
+    
+    dist[source] = 0;
+    
+    
+    
+    //   Create a Set  , and do the operations ..
+    
+      
+            // intialization of a set and Some conditions  ...   until  set not empty
+    
+    
+    set< pair<int,int> >  st;    //  Dist , Node
+    
+    // distance array m source node ka dist = 0  , set kr diya , now push a entry of the same in set
+    st.insert(make_pair(0,source));
+    
+    
+    
+     //  until set becomes not empty  so the operations ... 
+    
+    while(!st.empty()){
+        
+        auto TopPair = *(st.begin());
+        
+        int nodeDsit =  TopPair.first;
+        int TopNode =  TopPair.second;
+        
+        
+        // Remove the top from Set ..
+        
+        st.erase(TopPair);
+        
+        // traverse the neighbours
+        
+        for(auto neigh : adj[TopNode]){
+            
+             int CurrDest = dist[TopNode] + neigh.second;
+           
+              if( CurrDest < dist[neigh.first])
+               {    
+                      auto  pairDel = st.find( make_pair(dist[neigh.first] , neigh.first));
+                  
+                      if(pairDel != st.end()){
+                          st.erase(pairDel);
+                      }
+                 
+                  
+                  
+                  
+                      
+                  // update the distance 
+                  
+                      dist[neigh.first] = CurrDest;
+                          
+                  // push in set , entryPair
+                  
+                   st.insert( make_pair(CurrDest , neigh.first) );
+                   
+               }
+            
+        }  // for auto  neigh 
+       
+    }  // while set not empty
+    
+    
+    
+    return dist;
+    
+    // Time Comp : O(E * Log(V) );
+    // Space Comp : O(V+E);
+    
+    
+    
+    
+    
+    
+}

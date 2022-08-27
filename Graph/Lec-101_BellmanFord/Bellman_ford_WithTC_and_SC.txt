@@ -1,0 +1,69 @@
+#include<bits/stdc++.h>
+int bellmonFord(int n, int m, int src, int dest, vector<vector<int>> &edges) {
+    // Write your code here.
+    
+    
+    
+    vector<int> dist(n+1 , 1e9);
+    dist[src] = 0;
+    
+    
+    
+    
+    // step 1 : 
+    
+    for(int k=0;k<n-1;k++){
+        
+        for(int i=0;i<m ; i++ ){
+            
+            int u = edges[i][0];
+            int v= edges[i][1];
+            
+            int wt = edges[i][2];
+            
+            
+            
+            if( dist[u] != 1e9 && dist[u] + wt < dist[v]){
+                dist[v] = dist[u] + wt;
+            }
+            
+            
+        }
+        
+        
+    }
+    
+    
+    
+    // Step 2 : 
+    
+    for(int i=0;i<m; i++){
+            
+            int u = edges[i][0];
+            int v= edges[i][1];
+            
+            int wt = edges[i][2];
+            
+            if( dist[u] != 1e9 && dist[u] + wt < dist[v]){
+                 return 10e9;
+            }
+            
+            
+    }
+    
+    
+    return dist[dest];   
+    
+    
+    // Time Comp : O(V * E);
+    // Space Comp : O(V);
+    
+    
+   
+    
+   
+    
+    
+    
+    
+}

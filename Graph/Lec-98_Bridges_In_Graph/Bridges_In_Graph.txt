@@ -1,0 +1,119 @@
+
+#include<unordered_map>
+#include<list>
+
+void  dfs(int node,int &timer, vector<int> &disc , vector<int> &low , int parent,  unordered_map<int, bool> &visited , unordered_map<int , list<int> > &adj , vector< vector<int> > &ans ){
+    
+    
+    visited[node] = true;
+    
+    
+    disc[node] = timer;
+    low[node] = timer;
+    timer++;
+    
+     
+    
+    for(auto neigh : adj[node]){
+        
+        if(neigh == parent){
+            continue;
+        }
+         
+           if(visited[neigh] == true){
+                        // backedge  
+                low[node] = min( low[node] , disc[neigh] );
+                
+            }
+        
+        
+        
+        
+            else{
+                
+                dfs(neigh , timer , disc , low , node , visited , adj , ans );
+
+                    low[node] = min(low[node] , low[neigh]);   // update low
+
+            // check edge is bridge ..
+                
+                    if(low [neigh] > disc[node]){
+                        vector<int> v;
+
+                        v.push_back(node);
+                        v.push_back(neigh);
+
+                        ans.push_back(v);
+
+                    } 
+                
+                
+            }
+        
+        
+        
+     }
+    
+    
+    
+}
+
+
+
+vector<vector<int>> findBridges(vector<vector<int>> &edges, int v, int e) {
+    // Write your code here
+    
+    unordered_map<int , list<int> > adj;
+    
+    
+    for(int i=0;i<edges.size();i++){
+        int u = edges[i][0];
+        int v = edges[i][1];
+        
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+       
+    }
+    
+    
+    
+    int timer = 0;
+    
+        vector<int> disc(v);
+        vector<int> low(v);
+
+        int parent = -1;
+    
+        unordered_map<int, bool> visited;
+    
+    
+        for(int i=0;i<v;i++){
+                disc[i] = -1;
+                low[i] = -1;
+            
+        }
+    
+    
+    
+    vector< vector<int> > ans;
+    
+    // DFs ... 
+    
+    for(int i=0;i<v;i++){
+        
+        if(!visited[i]){
+            dfs(i , timer   , disc , low , parent ,  visited ,  adj , ans  );
+        }
+        
+        
+    }
+    
+    
+    return ans;
+
+
+// Time Comp  :   O(V+E) ;     
+// Space Comp  :   O(V+E) ;     
+    
+
+}

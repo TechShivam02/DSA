@@ -1,0 +1,169 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+class graph{
+    
+    public: 
+       
+ 
+        void addEdge(int u , int v ,int wt ,   unordered_map<int , list< pair<int,int> >  > &adj){
+            
+            pair<int,int> par = make_pair(v,wt);
+            
+            adj[u].push_back(par);
+            
+        }
+        
+        
+        
+        void printAdj( unordered_map<int , list< pair<int,int> >  > &adj ){
+            
+            for(auto i : adj){
+                cout<<i.first<<" -> ";
+                
+                for(auto ele : i.second){   // ele.first = v    ele.second = wt
+                
+                    cout<<"("<<ele.first<<","<<ele.second<<") ";
+                    
+                }
+                
+                cout<<endl;
+                
+            }
+        }
+        
+        
+        void dfs(int src , unordered_map<int,bool> &visited , stack<int> &stk ,  unordered_map<int , list< pair<int,int> >  > &adj ){
+            
+            visited[src] = true;
+           
+           for(auto ele : adj[src]){   
+               if(!visited[ele.first]){
+                   dfs(ele.first , visited , stk , adj);
+               }
+           }
+           
+           stk.push(src);
+           
+        }
+     
+      
+};
+
+
+
+
+int main()
+{
+    graph g;
+    
+      unordered_map<int , list< pair<int,int> >  > adj;
+    
+    int n=6;
+    
+    int srcNode = 1;
+    
+    
+    // Step 1 : create  AdjList   --> ( Directed  ,   (u,v,wt) )  
+ 
+    g.addEdge(0,1,5 , adj);
+    g.addEdge(0,2,3 , adj);
+    
+    g.addEdge(1,2,2 , adj);
+    g.addEdge(1,3,6 , adj);
+    
+    g.addEdge(2,3,7 , adj);
+    g.addEdge(2,4,4 , adj);
+    g.addEdge(2,5,2 , adj);
+    
+    g.addEdge(3,4,-1 , adj);
+    g.addEdge(4,5,-2 , adj);
+    
+    g.printAdj(adj);
+    
+    
+    
+    // Step 2 : topological sort  -->  and  create a stack 
+    
+    unordered_map<int,bool> visited;
+    stack<int> stk;
+    
+    
+    for(int src=0 ; src<n ; src++){
+        
+        if(!visited[src]){
+            g.dfs(src , visited , stk , adj);
+        }
+    }
+    
+    
+    
+    // step 3 :  create a Dist array  intialize all with inf , and the src node with dist 0 
+    
+    
+    vector<int> dist(n);
+    
+    for(int i=0;i<n;i++){
+        
+        if(i==srcNode){
+            dist[i] = 0; 
+        }
+        
+        else{
+            dist[i] = INT_MAX;
+        }
+        
+    }
+    
+        
+        
+    // Step 4  : Do the operations , Find top ,   if dist[top] is not inf  then only do the operations ,, Kb Tk --> While st Not Empty
+    
+    
+    while(!stk.empty()){
+        
+        int top = stk.top();
+        stk.pop();
+        
+        if(dist[top] == INT_MAX){
+            continue;
+        }
+        
+        else{
+            
+            int ans = 0;
+            
+            int distTop = dist[top];
+            
+            for(auto ele : adj[top]){
+                
+                int distSD = distTop + ele.second;
+                
+                dist[ele.first] = min(distSD , dist[ele.first]);
+            }
+            
+        }
+        
+    }
+    
+    
+    
+    cout<<endl<<endl;
+    
+    
+    
+    for(int i=0;i<n;i++){
+        cout<<dist[i]<<"  ";
+    }
+    
+    
+
+    return 0;
+
+
+	// Time Comp : O(V+E);
+	// Space Comp : O(V+E);
+
+}
