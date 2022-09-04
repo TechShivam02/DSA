@@ -1,0 +1,35 @@
+int eulerPath(int n, vector<vector<int>> graph){
+        
+        
+        int odd=0;
+        
+        
+        for(int i=0;i<n;i++){
+            
+            int degree = 0;
+            
+            for(int j=0;j<graph[i].size() ; j++){
+            
+                if(graph[i][j] == 1){
+                    degree++;
+                }
+                
+            }
+            
+            if(degree % 2 != 0){  // odd
+                odd++;
+            }
+            
+        }
+        
+        if(odd == 0  || odd==2){
+            return 1;
+        }
+        
+        
+        return 0;
+        
+        
+        
+        
+    }

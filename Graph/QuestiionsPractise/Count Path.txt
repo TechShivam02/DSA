@@ -1,0 +1,39 @@
+void  Find_Ans_DFS(unordered_map< int , list<int> > &adj , int src,  int dest, int &ans){
+        
+            if(src == dest){
+                ans++;
+                return;
+            }
+            
+            for(auto ele : adj[src]){
+            
+                    Find_Ans_DFS(adj , ele , dest , ans);
+            }
+        
+    }
+    
+    
+
+	int possible_paths(vector<vector<int>>edges, int n, int s, int d){
+
+	   
+	   unordered_map<int , list<int> > adj;
+	   
+	    
+	    for(int i=0;i<edges.size() ; i++){
+	        
+	            int u = edges[i][0];
+	            int v = edges[i][1];
+	            
+	            adj[u].push_back(v);
+	    }
+	    
+	    
+	    int ans=0;
+	    
+	    Find_Ans_DFS(adj  ,  s, d, ans);
+	    
+	    return ans;
+	    
+	}
+	

@@ -1,0 +1,32 @@
+ void dfs(int src , vector<int> adj[] , vector<int> &visited , vector<int> &ans )
+   {
+       
+       visited[src] = true;
+       ans.push_back(src);
+       
+       
+       for(auto ele :  adj[src]){
+       
+            if(!visited[ele]){
+                
+               
+                dfs(ele , adj , visited , ans);
+            }    
+           
+       }
+       
+       
+   }
+    vector<int> dfsOfGraph(int n, vector<int> adj[]) {
+       
+       vector<int> ans;
+       
+       vector<int> visited(n, false);
+       
+       dfs( 0 , adj , visited , ans );
+       
+       return ans;
+       
+       
+       
+    }
