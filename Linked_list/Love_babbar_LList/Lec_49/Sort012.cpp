@@ -201,23 +201,48 @@ if(head == NULL && head->next == NULL){
     // dummy  
 
 
-    if(onehead -> next != NULL){
-        zerotail -> next = onehead->next;
+    zerotail -> next = onehead;
+    onetail->next = twohead;
+    twotail->next = NULL;
+
+
+
+
+    // dummy -->  0 -->  0  --> dummy --> 2 -->  2 
+
+    // Or input :    dummy -> 0 -> 0 -> 0 -> 0 -> 0 -> dummy ->dummy 
+
+        
+    head = zerohead;
+
+    struct node* prev = head;
+    struct node* curr = head->next;
+
+    while(curr != NULL){
+
+        if(curr -> data == -1){
+            
+            struct node* temp = curr;
+            
+            curr = curr->next;
+
+            prev->next = curr;
+            delete temp;
+
+        }
+
+        else{
+            prev = prev->next;
+            curr = curr->next;
+        }
+        
     }
 
-    if(twohead->next != NULL)
-    {
-        onetail->next = twohead->next;
-        twotail->next = NULL;
-    }
-
-    // final Ans ..
-    head = zerohead->next; 
 
 
 
+    head = zerohead->next;
 
-    
     
 }
 
@@ -234,6 +259,8 @@ int main(){
 
             insertEnd(tail , 2);
 
+
+           
             
             display(head);
 
