@@ -18,7 +18,11 @@ int main(){
 
     int n=6;
 
-    cout<<"Fibo : "<<fibo(n);
+    cout<<"Fibo : "<<fibo(n);  
+    
+    // Time Comp : 2^n;
+    
+    
 
     return 0;
 
