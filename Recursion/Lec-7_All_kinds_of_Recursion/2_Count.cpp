@@ -6,6 +6,11 @@ using namespace  std;
 
 int CountsubSequenceBOOL(int i , int arr[] , int n  , int sum , int k){
 
+    if(sum > k)
+    {
+        return 0;   // never ans can be found , here Or in their child subTree 
+    }
+
 
     if(i>=n){
      
@@ -62,7 +67,7 @@ int main(){
     cout<<CountsubSequenceBOOL(0 , arr , n  , cSum , k);    
 
 
-
+    // Time Comp : O(2^n);
 
     return 0;
 }
