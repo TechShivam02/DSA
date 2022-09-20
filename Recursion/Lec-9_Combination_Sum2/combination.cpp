@@ -29,7 +29,7 @@ void combinationSum2(int index , int target , vector<int> &vec , int arr[] , int
     for(int i=index ; i<n;i++){
 
 
-            if( i> index &&  arr[i] == arr[i-1]){
+            if( i != index &&  arr[i] == arr[i-1]){
                 continue;
             }
 

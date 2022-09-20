@@ -20,12 +20,11 @@ void subsets(int index  , int arr[] , int n , vector<int> &vec){
 
     for(int i=index ; i<n;i++){
 
-            if( i> index &&  arr[i] == arr[i-1]){
+            if( i!= index &&  arr[i] == arr[i-1]){
                 continue;
             }
 
             vec.push_back(arr[i]);
-
             display(vec);
 
         subsets(i+1 , arr, n , vec );
