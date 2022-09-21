@@ -198,7 +198,7 @@ int main(){
     
 
 
-    // 1st approach :    for each ele  find if it repeat from next position , if  yes , dete that entry
+    // 1st approach :    for each ele  find if it repeat from next position , if  yes , delete that entry
         // time comp : O(n2)  spaceComp : O(1);
 
 
@@ -206,7 +206,7 @@ int main(){
 
     // 2nd approach           2.1  ) sort the linked list     2.2) remove dup from sorted llist 
                               2.1  Time comp : O(n LOg(n))     2.2  O(n)    OverALL -->  O(N log(N)) 
-
+                // Also  this will change the order of linked list
     
     
 
