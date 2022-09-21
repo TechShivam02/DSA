@@ -25,10 +25,9 @@
               temp ->next = head;
               
               head = temp;
-              
-              
-                
             }
+
+
             
             
             void insertEnd(struct node* head , int newData){
@@ -40,12 +39,9 @@
               struct node* temp = new node(newData);
               head ->next = temp;
               
-              
-              
-              
-                
             }
             
+
             
          void insertAtPosition(struct node* head , int pos , int data){
                  
@@ -57,8 +53,6 @@
                     temp = temp->next;
                     count++;
                 }
-                
-                
                     
               struct node* NewTemp = new node(data);
               NewTemp->next = temp->next;
@@ -66,7 +60,7 @@
               temp->next = NewTemp;
               
                 
-            }
+        }
             
             
         
@@ -181,7 +175,7 @@
         
         
         
-        int main(){
+int main(){
         
         
             struct node* head = new node(1);
@@ -247,10 +241,4 @@
     search(head , ele);
     
          
-         
-         
-        
-    
-        
-        
     }

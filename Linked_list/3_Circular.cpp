@@ -21,8 +21,7 @@ using namespace std;
         struct node* head = NULL;
         struct node* tail;
 
-        
-        
+
     void insert(int data){
 
             struct node* newNode = new node(data);

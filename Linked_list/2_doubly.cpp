@@ -29,11 +29,7 @@ struct node{
             struct node* tail;
 
             
-            
-
-            
-            
-            
+           
         
         
     void insertBegin(struct node* &head , int newData){   //  1 2 3
@@ -71,21 +67,18 @@ struct node{
             
 void insertAtPosition(struct node* &head , int pos , int data){
                  
-                 struct node* temp = head;
-                 
+    struct node* temp = head;         
 
     if(pos >=2 ){
-
-
+            
                 int count = 2;
                  
                 while(count < pos){
                     temp = temp->next;
                     count++;
                 }
-                
-                
-                    
+
+
               struct node* NewTemp = new node(data);
               NewTemp->next = temp->next;
               temp->next->prev = NewTemp;
@@ -106,7 +99,9 @@ void insertAtPosition(struct node* &head , int pos , int data){
               head = NewTemp;
 
 
-        }  
+        } 
+
+
               
                 
 }
@@ -203,9 +198,8 @@ void deleteEnd(struct node* &tail){
         
         
         
-     void search(struct node* head , int ele){
+    void search(struct node* head , int ele){
          
-
           
         struct node* temp = head;
 
@@ -214,6 +208,7 @@ void deleteEnd(struct node* &tail){
             
             bool flag = false;
             
+
             while(temp != NULL){
                 
                 if(temp -> data == ele)
@@ -268,7 +263,6 @@ int main(){
         
         
             tail = tail->next;
-            
         
         
             display(head);
