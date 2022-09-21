@@ -145,7 +145,6 @@ int main(){
         
             struct node* head = new node(1);
             struct node* tail = head;
-            
         
             insertEnd(tail , 2);
             insertEnd(tail , 3);
@@ -154,6 +153,7 @@ int main(){
             
 
             // tail->next = head;   // making the llist  circular ..
+            // head->prev = tail;  // making the llist  circular .
 
 
             display(head);
@@ -165,12 +165,12 @@ int main(){
 //Using slow and fast   ,, { edge cases  odd and even nodes   slow=head , fast = head->next      fast!= NULL   && fast->next!= NULL   }
   
 
-            cout<<DetectCycle(head);   // using Slow And fast ..
+            cout<<DetectCycle(head)<<endl;  // using Slow And fast ..
 // if the length of linked list is very large  and and if it is circulr  , then slow and fast  meet  may in O(2n 3n ) or more
 // best : O(n);    space O(1)
 
 
-            cout<<DetectCycleMap(head);         // time O(n)  space O(n)   
+            cout<<DetectCycleMap(head)<<endl;         // time O(n)  space O(n)   
             // time comp better then first  
 
 
