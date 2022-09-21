@@ -48,6 +48,7 @@ Node<int>* solve(Node<int> *first , Node<int> *second){
     
 }
 
+
 Node<int>* sortTwoLists( Node<int>* first, Node<int>* second)
 {
     if(first == NULL){
@@ -67,6 +68,7 @@ Node<int>* sortTwoLists( Node<int>* first, Node<int>* second)
     } 
 }
 
+
 // 1st approach 
 
  // using 2 pointers find min ele ,  storing i n vector ,, then create a llist  and return its head;
@@ -79,7 +81,7 @@ Node<int>* sortTwoLists( Node<int>* first, Node<int>* second)
 
 // 1st llist passed always smaller
 // 2nd bigger
-// if 2nd linked data ptr  can settle bw the first one then chage the links   from llist1 to llist 2
+//  2nd linked data ptr  can settle bw the first one then chage the links   from llist1 to llist 2
 
     // Time Comp : O(n);
     // Space comp : O(1);

@@ -33,9 +33,8 @@ void  insertTail(struct Node* &tail , int data){
 
    
    
-  struct Node* addTwoLList(struct Node* head1 , struct Node* head2)
+struct Node* addTwoLList(struct Node* head1 , struct Node* head2)
    {
-       
        
        if(head1 == NULL){
            return head2;
@@ -112,13 +111,7 @@ void  insertTail(struct Node* &tail , int data){
    
 
 
-
-
-
-
-
-
-   struct Node* addTwoLists(struct Node* first, struct Node* second)
+ struct Node* addTwoLists(struct Node* first, struct Node* second)
    {
        struct Node* head1 = reverse(first);
        struct Node* head2 = reverse(second);

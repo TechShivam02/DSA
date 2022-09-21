@@ -135,9 +135,9 @@ void insertTailUpdate(struct node* &head , struct node* &tail , int data){
 
 void sortLL_changeLinks012(struct node* &head){
 
-if(head == NULL && head->next == NULL){
-    return;
-}
+    if(head == NULL && head->next == NULL){
+        return;
+    }
 
 
     struct node* zerohead = new node(-1);
@@ -288,7 +288,7 @@ int main(){
 
                     // if Interviwer asked  , To not to replace data ,   Approach 1   fails );
 
-// Approach 2 , 
+// Approach 2 
     // 1 0 1 2 2    
 
     /*      // by changing the links  ,  create  3 different linkedlist    0 , 1 , 2  merze them ..

@@ -9,7 +9,6 @@
         1.1  store in vector    pick each ele and push it into vector  // Space : O(n)  time : O(n)
         1.2  using 2 pointer check palindrome or not     // time  O(n/2)
 
-
         overall -->  Space : O(n)  ,,   Time : O(n)
     
     */
