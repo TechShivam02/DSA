@@ -32,16 +32,14 @@ void combinationSum(int index , int csum , int target , vector<int> &vec , int n
     target -= arr[index];
     vec.push_back(arr[index]);
 
-    combinationSum(index , csum , target , vec , n , arr);
-
-
+    combinationSum(index , csum , target , vec , n , arr);  // include
 
 
     csum -= arr[index];
     target += arr[index];
     vec.pop_back();
 
-    combinationSum(index+1, csum , target , vec , n , arr);
+    combinationSum(index+1, csum , target , vec , n , arr);  // Not include
 
 
 

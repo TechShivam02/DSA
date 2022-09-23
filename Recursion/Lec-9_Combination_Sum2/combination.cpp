@@ -16,7 +16,7 @@ void display(vector<int> &vec){
 
 void combinationSum2(int index , int target , vector<int> &vec , int arr[] , int n){
 
-    if(index > n || target <0) {
+    if(index >= n || target <0) {
         return;
     }
 
@@ -29,7 +29,7 @@ void combinationSum2(int index , int target , vector<int> &vec , int arr[] , int
     for(int i=index ; i<n;i++){
 
 
-            if( i != index &&  arr[i] == arr[i-1]){
+            if( i != index &&  arr[i] == arr[i-1]){ // check  curr ele alredy taken by previous POSition
                 continue;
             }
 
