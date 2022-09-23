@@ -37,6 +37,9 @@ int main()
     // int *ptr = 0;  // intialize with empty    NULL Pointer
     // cout<<*ptr<<endl;  
     
+
+
+
     
     
     /*
@@ -57,8 +60,8 @@ int main()
     */
     
     
-    /*
     
+    /*
     int num=5;
     int a=num;
     
@@ -74,14 +77,13 @@ int main()
      cout<<num<<endl;  // 6
      
      */
-     
+
+
      
      
      /*
      
-     
      int num = 5;
-     
      int *p =&num;
      
      
@@ -106,28 +108,34 @@ int main()
      cout<<*q<<" --> "<<*p<<endl;  // 7   7
      cout<<"num : "<<num<<endl;   // 7
      
-     
-  
      */
+
+
+
+
+  
      
      
+
      int i=3;
      int *t = &i;
      
-    //  cout<<*t++<<endl;  // 3
+    //  cout<<(*t)++<<endl;  // 3
      
-    //  cout<<++*t<<endl;  // 4
+    //  cout<<++(*t)<<endl;  // 5
     
-    // cout<<(*t)++<<endl; // 3
+    // cout<<(*t)++<<endl;  // 5
+    // cout<<(*t)<<endl;   // 6
     
+
+
+
     
-    cout<<"before t : "<<t<<endl;    // 100   100->3
+    // cout<<"before t : "<<t<<endl;    // 100 
+    // t=t+1;
+    // cout<<"After t : "<<t<<endl;   // 104 
     
-    t=t+1;
-    
-    cout<<"After t : "<<t<<endl;   // 104 
-    
-  
+
    
    
 
