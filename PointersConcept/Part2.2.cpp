@@ -68,11 +68,6 @@ void getUpdate(int arr[] ){
 }
 
 
-
-
-
-
-
 int main()
 {
   

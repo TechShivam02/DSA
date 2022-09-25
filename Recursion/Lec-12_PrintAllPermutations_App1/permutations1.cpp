@@ -21,8 +21,9 @@ void permutation(  int index ,  int arr[] , vector<int> &vec , bool visited[] , 
         return;
     }
 
-    for(int i=index ;i<n;i++){
 
+    for(int i=index ;i<n;i++){
+        
         if(visited[i] == true){
                 continue;
         }   

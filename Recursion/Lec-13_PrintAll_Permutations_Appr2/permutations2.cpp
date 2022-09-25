@@ -29,8 +29,7 @@ void permutation(  int index ,  int arr[] , int n){
 
     
           swap(arr[index] , arr[i]);
-
-        permutation(index+1 , arr  , n);
+       permutation(index+1 , arr  , n);
 
           swap(arr[index], arr[i]);
    }
@@ -44,9 +43,8 @@ int main(){
 
 
     int arr[] = {1,2,3};
+
     int n = sizeof(arr)/sizeof(arr[0]);
-
-
     permutation(0 , arr   , n);
 
     

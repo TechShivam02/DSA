@@ -38,11 +38,8 @@ int main()
     
     
     
-    
-    
     int *ptr1 = arr1;            // size of arr    ele * 4bytes = 20 bytes
-    
-    cout<<*ptr1<<" "<<endl;   // size of ptr = 8bytes
+    cout<<"------>"<<*ptr1<<" "<<endl;   // output : 2 , size of ptr = 8bytes
     
     
     
@@ -55,7 +52,7 @@ int main()
     cout<<sizeof(ptr)<<endl;   // 8 bytes
     cout<<sizeof(*ptr)<<endl;  // 4 bytes
     
-    cout<<sizeof(*temp)<<endl;  // base add p  value pdi hai  , uska size  4 bytes
+    cout<<"omomomom : "<<sizeof(*temp)<<endl;  // base add p  value pdi hai  , uska size  4 bytes
     cout<<sizeof(&temp)<<endl;  // 8   i.e  LikeWise : pointer 
     
     
@@ -76,13 +73,10 @@ int main()
     
     cout<<p<<endl;  //100
     cout<<*p<<endl;  // 1
-    cout<<&p<<endl;  // pointer ka adress 200
+    cout<<"adress of pointer : " <<&p<<endl;  // pointer ka adress 200
     
     
-    
-    
-    
-    cout<<endl;
+       cout<<endl;
     
     
     // Symbol table ka content  , Can't be changed 
@@ -108,14 +102,13 @@ int main()
     
     cout<<temp2<<endl;    // 100 base
     cout<<&temp2<<endl;   // 100 baser
-    cout<<*temp2<<endl;   // base p jo value pid hai     1
+    cout<<*temp2<<endl;   // base p jo value pdi hai   ,,   1
     
     
     
     
     
      char ch[6] = "abcde";
-     
      char *c = &ch[0];
      
      cout<<c<<endl;   // abcde   print entire string in char arrray    // starting from base adress and print until NULL char 
@@ -127,21 +120,6 @@ int main()
     char *btr = &b;
     
     cout<<btr<<endl;     // Starting from base adress of  b   and until found null char 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     return 0;
 }

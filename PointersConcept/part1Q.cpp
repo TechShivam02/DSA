@@ -15,6 +15,8 @@ int main()
         p2 = & secondvalue;// p2 = address of secondvalue 
         p3 = & thirdvalue; // p3 = address of thirdvalue
         
+
+        
         * p1 = 10; // value pointed to by p1 = 10 
         * p2 = * p1; // value pointed to by p2 = value pointed to by p1 
         
