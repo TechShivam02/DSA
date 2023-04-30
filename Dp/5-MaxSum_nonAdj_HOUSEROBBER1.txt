@@ -1,0 +1,143 @@
+ int solve(int index , int arr[]){
+        
+        if(index == 0){
+            return arr[index];    
+        }    
+        
+        if(index < 0){
+            return 0;    
+        }
+        
+        int pick = arr[index] + solve(index-2 , arr);
+        int notpick = 0 + solve(index-1 , arr);
+        
+        
+        
+        return max(pick,notpick);
+        
+    }
+    
+    
+     int solvememo(int index , int arr[] , vector<int> &dp){
+        
+        if(index == 0){
+            return arr[index];    
+        }    
+        
+        if(index < 0){
+            return 0;    
+        }
+        
+        if(dp[index] != -1){
+            return dp[index];
+        }
+        
+        
+        
+        int pick = arr[index] + solvememo(index-2 , arr , dp);
+        int notpick = 0 + solvememo(index-1 , arr , dp);
+        
+        
+        
+        dp[index] = max(pick,notpick);
+        
+        return dp[index];
+        
+        
+    }
+    
+    
+    
+    
+   
+    
+    
+    
+    int FindMaxSum(int arr[], int n)
+    {
+        
+        // return solve(n-1 , arr);   // recursion
+        
+        
+        
+    // Memo
+    
+        // vector<int> dp(n+1,-1);
+        
+        // return solvememo(n-1 , arr , dp);
+        
+        
+        
+        
+    // Tabularization 
+    
+        // vector<int> dp(n+1,0);
+        
+        // dp[0] = arr[0];
+        
+        // for(int i=1; i<= n-1 ; i++){
+            
+        //     int take;
+            
+        //     if(i==1){
+        //         take = arr[i];
+        //     } 
+            
+        //     else{
+        //         take = arr[i] + dp[i-2];
+        //     }
+            
+            
+            
+        //     int nottake = 0 + dp[i-1];
+            
+            
+        //     dp[i] = max(take,nottake);
+             
+        // }
+        
+        // return dp[n-1];
+        
+        
+        
+        
+        
+    // Space OPtimization
+    
+        int prev1=arr[0];
+        
+        
+        int prev2=0;
+        
+        for(int i=1;i<=n-1;i++){
+            
+            int take;
+            
+            if(i==1){
+                take = arr[i];
+            } 
+            
+            else{
+                take = arr[i] + prev2;
+            }
+            
+            
+            
+            int nottake = 0 + prev1;
+            
+            
+            int curr = max(take,nottake);
+            
+            prev2 = prev1;
+            prev1 = curr;
+            
+        }
+        
+        
+        // return dp[n-1];
+        
+        return prev1;
+        
+        
+        
+    }

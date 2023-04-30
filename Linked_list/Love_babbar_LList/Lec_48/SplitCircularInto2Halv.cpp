@@ -1,6 +1,4 @@
 #include<iostream>
-// #include<pair>
-
 using namespace std;
         
         
@@ -17,11 +15,8 @@ struct node{
     
     this->next = NULL;
     this->prev = NULL;
-    
-                
                 
     }
-        
 };
 
 
@@ -94,9 +89,6 @@ void split2halves(struct node* head , struct node* tail , int mid){
         if(head== NULL || head->next == head){
             return;
         }
-
-        
-        
 
     struct node* prev = head;
     struct node* curr = head->next;

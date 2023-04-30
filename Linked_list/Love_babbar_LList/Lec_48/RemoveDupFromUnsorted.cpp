@@ -109,9 +109,10 @@ void removeDuplicates3(struct  node* head){
 
     unordered_map<int,int> mp;
 
-if(head == NULL || head->next == NULL){
-    return;
-}
+
+    if(head == NULL || head->next == NULL){
+        return;
+    }
 
 
     struct node* prev = head;
@@ -149,38 +150,36 @@ if(head == NULL || head->next == NULL){
 
 int main(){
         
-            // struct node* head = new node(1);
-            // struct node* tail = head;
-            
-        
-            // insertEnd(tail , 5);
-
-            // insertEnd(tail , 2);
-            
-            // insertEnd(tail , 1);
-            
-            // insertEnd(tail , 3);
-
-            // insertEnd(tail , 5);
-
-            // insertEnd(tail , 4);
-            
-            // insertEnd(tail , 4);
-            
-            
-
-
             struct node* head = new node(1);
             struct node* tail = head;
             
         
+            insertEnd(tail , 5);
+
+            insertEnd(tail , 2);
+            
             insertEnd(tail , 1);
-            insertEnd(tail , 2);
-            insertEnd(tail , 2);
+            
             insertEnd(tail , 3);
-            insertEnd(tail , 3);
+
+            insertEnd(tail , 5);
+
             insertEnd(tail , 4);
+            
             insertEnd(tail , 4);
+            
+
+            // struct node* head = new node(1);
+            // struct node* tail = head;
+            
+        
+            // insertEnd(tail , 1);
+            // insertEnd(tail , 2);
+            // insertEnd(tail , 2);
+            // insertEnd(tail , 3);
+            // insertEnd(tail , 3);
+            // insertEnd(tail , 4);
+            // insertEnd(tail , 4);
             
 
 

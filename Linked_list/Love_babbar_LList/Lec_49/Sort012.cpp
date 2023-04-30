@@ -1,28 +1,22 @@
 #include<iostream>
 using namespace std;
-        
-        
+           
 struct node{
         
     int data;
     struct node* next;
     struct node* prev;
-    
-            
+        
     node(int newData){
                 
     this->data = newData;
     
     this->next = NULL;
     this->prev = NULL;
-    
-                
-                
+          
     }
         
 };
-
-
 
           
 void insertEnd(struct node* &tail , int newData){
@@ -47,7 +41,6 @@ void insertEnd(struct node* &tail , int newData){
                     cout<<temp->data << "->";
                     temp = temp->next;
                 }
-
 
              cout<<endl<<endl;
           
@@ -78,10 +71,11 @@ void sortLLBycount012(struct node* head){
             count2++;
         }
 
-
         ptr = ptr->next;
 
-    }
+}
+
+
 
 
     cout<<"0 : "<<count0<<endl;
@@ -114,10 +108,6 @@ void sortLLBycount012(struct node* head){
         temp = temp->next;
     }  
 }
-
-
-
-
 
 
 
@@ -174,6 +164,8 @@ void sortLL_changeLinks012(struct node* &head){
     }
 
 
+
+
 /*
     // correct   , but not for all cases ..
 
@@ -189,17 +181,19 @@ void sortLL_changeLinks012(struct node* &head){
   
     head = zerohead->next;
 
+
 */
 
 
 
-                // Final Ans ..  for llist  eighther containig no 0 || no 1  || no 2
-// if no  2 in llist     or if no  1 in llist 
+
+                // Final Ans ..  for llist  eighther containig No 0 || No 1  || No 2
+
+// if No  2 in llist     or if No  1 in llist 
 
     // dummy  --> 0  -->  0 --> 0 
     // dummy
     // dummy  
-
 
     zerotail -> next = onehead;
     onetail->next = twohead;
@@ -238,13 +232,12 @@ void sortLL_changeLinks012(struct node* &head){
         
     }
 
-
-
-
     head = zerohead->next;
-
-    
 }
+
+
+
+
 
 int main(){
         

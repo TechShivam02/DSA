@@ -140,8 +140,6 @@ bool DetectLoopFLOYD(struct node* head , struct node* &prev){
             {
 
                 prev = fast;
-
-
                 slow = head;
 
                 while( fast->next != slow && slow != fast){

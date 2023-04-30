@@ -37,7 +37,6 @@ int main()
     
     
     
-    
     int *ptr1 = arr1;            // size of arr    ele * 4bytes = 20 bytes
     cout<<"------>"<<*ptr1<<" "<<endl;   // output : 2 , size of ptr = 8bytes
     
@@ -85,7 +84,6 @@ int main()
     
     int temp2[10] = {1,2,3,4,5};
     
-    
     // temp2=temp2+1;  // Error 
     
     int *pp = temp2;   //     lets say base adress: 100    *pp = 1  
@@ -103,9 +101,6 @@ int main()
     cout<<temp2<<endl;    // 100 base
     cout<<&temp2<<endl;   // 100 baser
     cout<<*temp2<<endl;   // base p jo value pdi hai   ,,   1
-    
-    
-    
     
     
      char ch[6] = "abcde";

@@ -1,15 +1,13 @@
-
 #include <iostream>
 using namespace std;
+
 
 int main()
 {
    
 //   int num = 5;
    
-//   int * ptr = &num;
-   
-   
+//   int *ptr = &num;
    
 //   cout<<num<<endl;  // 5
    
@@ -26,7 +24,6 @@ int main()
     // cout<<sizeof(*ptr)<<endl;  // size of pointer variable : 4 bytes
     
     
-    
     // int *ptr = 5;  // wrong
     
     // cout<<ptr<<endl;   //   int *ptr = 5;  wrong
@@ -37,12 +34,10 @@ int main()
     // int *ptr = 0;  // intialize with empty    NULL Pointer
     // cout<<*ptr<<endl;  
     
-
-
-
     
     
     /*
+    
     int i=5;
     
     int *q = &i;
@@ -62,14 +57,15 @@ int main()
     
     
     /*
+
+
     int num=5;
     int a=num;
     
     a++;
     
     cout<<num<<endl;
-    
-    
+
     
     int *p = &num;
      cout<<num<<endl;  // 5
@@ -78,8 +74,8 @@ int main()
      
      */
 
-
      
+
      
      /*
      
